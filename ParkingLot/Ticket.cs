@@ -11,26 +11,26 @@
 //The customer should be allocated a parking slot that is nearest to the entry. At the exit, 
 //the customer returns the ticket which then marks the slot they were using as being available.
 
-//https://medium.com/@abhigulve06/parking-lot-low-level-design-in-java-2be46101daec
-
 
 namespace ParkingLot
 {
-    internal class Program
+    public class Ticket
     {
-        static void Main(string[] args)
+        public string _carNumber;
+        public string _carColor;
+        public int _slotNumber { get; set; }
+
+        public DateTime TicketIssueTime{ get; set; }
+
+        public ParkingCostStrategy _costStrategy { get; set; }
+
+        public Ticket(string carNumber, string color, int slot, ParkingCostStrategy strategy)
         {
-            ParkingLot p = new ParkingLot(100);
-            p.IssueTicket("MH12KC6114", "Blue");
-            p.IssueTicket("816249721654", "Blue");
-
-            p.status();
-
-            var ticket = p.tickets.Find(c => c._slotNumber == 1);
-            decimal cost = p.EixtParking(ticket);
-            p.status();
-
-            Console.Read();
+            _carNumber = carNumber;
+            _carColor = color;
+            _slotNumber = slot;
+            _costStrategy = strategy;
+            TicketIssueTime = DateTime.Now;
         }
     }
 }
